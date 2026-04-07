@@ -1,0 +1,22 @@
+time="2026-04-07T05:50:05Z" level=info msg="ingestor started" batch_size=100 flush_interval=50ms symbols=20 trade_stream=aggTrade
+time="2026-04-07T05:50:06Z" level=info msg="websocket connected"
+time="2026-04-07T05:50:06Z" level=info msg="websocket connected"
+time="2026-04-07T05:50:06Z" level=info msg="symbol is ready" symbol=OPUSDT
+time="2026-04-07T05:50:06Z" level=info msg="symbol is ready" symbol=TONUSDT
+time="2026-04-07T05:50:06Z" level=info msg="symbol is ready" symbol=BTCUSDT
+time="2026-04-07T05:50:06Z" level=info msg="symbol is ready" symbol=SOLUSDT
+time="2026-04-07T05:50:06Z" level=info msg="symbol is ready" symbol=XRPUSDT
+time="2026-04-07T05:50:06Z" level=info msg="symbol is ready" symbol=DOGEUSDT
+time="2026-04-07T05:50:06Z" level=info msg="symbol is ready" symbol=FILUSDT
+time="2026-04-07T05:50:06Z" level=info msg="symbol is ready" symbol=ADAUSDT
+time="2026-04-07T05:50:06Z" level=info msg="symbol is ready" symbol=ARBUSDT
+time="2026-04-07T05:50:06Z" level=info msg="symbol is ready" symbol=NEARUSDT
+time="2026-04-07T05:50:06Z" level=info msg="symbol is ready" symbol=BNBUSDT
+time="2026-04-07T05:50:06Z" level=info msg="symbol is ready" symbol=ETHUSDT
+time="2026-04-07T05:50:06Z" level=info msg="symbol is ready" symbol=LINKUSDT
+time="2026-04-07T05:50:06Z" level=info msg="symbol is ready" symbol=AVAXUSDT
+time="2026-04-07T05:50:06Z" level=info msg="symbol is ready" symbol=LTCUSDT
+time="2026-04-07T05:50:06Z" level=info msg="symbol is ready" symbol=DOTUSDT
+time="2026-04-07T05:50:06Z" level=info msg="symbol is ready" symbol=APTUSDT
+time="2026-04-07T05:50:06Z" level=info msg="symbol is ready" symbol=TRXUSDT
+time="2026-04-07T05:50:07Z" level=info msg="symbol is ready" symbol=ATOMUSDT

@@ -1,0 +1,64 @@
+services:
+  timescaledb:
+    image: timescale/timescaledb:2.14.2-pg16
+    container_name: xno-timescaledb
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-xno}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-xno_pass}
+      POSTGRES_DB: ${POSTGRES_DB:-xno_market}
+    ports:
+      - "5432:5432"
+    volumes:
+      - timescaledb_data:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-xno} -d ${POSTGRES_DB:-xno_market}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  ingestor:
+    build:
+      context: .
+      dockerfile: services/ingestor/Dockerfile
+    container_name: xno-ingestor
+    env_file:
+    - .env
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-xno}:${POSTGRES_PASSWORD:-xno_pass}@timescaledb:5432/${POSTGRES_DB:-xno_market}?sslmode=disable
+    depends_on:
+      timescaledb:
+        condition: service_healthy
+
+  go-backend:
+    build:
+      context: .
+      dockerfile: services/go-backend/Dockerfile
+    container_name: xno-go-backend
+    env_file:
+    - .env
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-xno}:${POSTGRES_PASSWORD:-xno_pass}@timescaledb:5432/${POSTGRES_DB:-xno_market}?sslmode=disable
+      PORT: 8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      timescaledb:
+        condition: service_healthy
+
+  react-frontend:
+    build:
+      context: .
+      dockerfile: services/react-frontend/Dockerfile
+    container_name: xno-react-frontend
+    env_file:
+    - .env
+    environment:
+      VITE_API_BASE_URL: http://localhost:8080
+    ports:
+      - "5173:5173"
+    depends_on:
+      - go-backend
+
+volumes:
+  timescaledb_data:
