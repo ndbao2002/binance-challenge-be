@@ -78,6 +78,7 @@ The ingestor supports 15-minute startup backfill via env vars:
 While backfill logic is implemented, it is not enabled by default and is generally not recommended when depth fidelity matters. The reason is that backfill cannot preserve the original historical depth state. When enabled, the ingestor fetches historical trades for the last 15 minutes and emits snapshots using the configured `BACKFILL_TYPE`:
 - `approx`: emits snapshots using a current/top-of-book approximation, not the true historical book state.
 - `null`: emits snapshots with null depth columns, so historical depth state is unavailable.
+
 The same limitation applies to startup live trades that arrive before a symbol is marked ready.
 
 ## 3. Language/Framework Choices and Why
